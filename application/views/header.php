@@ -20,6 +20,20 @@ $( "#datepicker" ).datepicker();
 					                <div class="logo_box">
 					                	<img src="<?php echo base_url();?>images/logo.png" width="208" height="95" />
 					                </div>
+					                <div class="toparea">
+															<div class="guestlogin">
+		
+																<?php
+																$logged_in_user=$this->session->userdata('full_name'); 
+																echo "<a>". $logged_in_user. "</a>";
+															?>
+																
+																</div>
+															<div class="welcomebox"><a>Welcome :</a></div>
+
+
+
+</div>
 			 </div>
 	</div>
 	 
@@ -31,6 +45,12 @@ $( "#datepicker" ).datepicker();
 					      <li><a href="#">Packages</a></li>
 					      <li><a href="#">FAQs</a></li>
 					      <li><a href="#">Contact</a></li>
+					      <?php
+					      if($this->session->userdata('parent_id')== 0)
+					      {
+					      	echo "<li><a href=" .site_url('admin/report'). ">Reports</a></li>";
+					      }
+					       ?>
 					       <?php if($this->session->userdata('id'))
 					       {
 					       		if($this->session->userdata('parent_id')!= 0){ ?>
