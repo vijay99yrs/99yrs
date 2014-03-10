@@ -1,0 +1,23 @@
+<?php	
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+	class Check_model extends CI_Model
+	{	
+			public function logincheck($username , $password)
+		{
+			$this->load->database();
+			$this->load->library('session');
+			//$loginsql="SELECT id from 99yrs_user where user_name='$username' AND password='$password'";
+			$query = $this->db->query("SELECT id from 99yrs_user where user_name='$username' AND password='$password'");
+			$count=$query->num_rows();
+			if($count==1){
+				
+				$this->session->userdata(array('username'=>$username, 'password'=>$password ));
+				$this->session->set_userdata("username","$username");
+				$loggedin_username=$this->session->userdata("username");
+				return true;
+			}else{
+				return false;
+			}
+		}
+	}
+?>
