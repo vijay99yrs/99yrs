@@ -188,6 +188,13 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 							  $mail->ClearAttachments();
 		}
 		
+		public function show_report()
+		{
+			$date=date('Y-m-d');
+			$get_report= "select * from 99yrs_task where target_date='$date'";
+			$report_result=$this->db->query($get_report);
+			return  $report_result->result();
+			}
 		
 	}
 ?>

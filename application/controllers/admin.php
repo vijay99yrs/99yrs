@@ -28,6 +28,11 @@
 			$this->session->sess_destroy();
 			redirect('login');
 		}
+		public function report()
+		{
+			$data['get_report']=$this->user_model->show_report();
+			$this->load->view('admin/report_view',$data);
+			}
 		
 }
 	
