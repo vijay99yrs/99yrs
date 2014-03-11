@@ -22,8 +22,6 @@
 					 {
 						redirect('user');
 					 }
-				
-					
 					
 				}
 				else
