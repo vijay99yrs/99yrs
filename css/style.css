@@ -24,7 +24,7 @@ body {padding:0px;
 
 
 
-#wrapper_header{ width:100%; height:130px;}
+#wrapper_header{ width:100%; height:500px;}
 .header {/*width:980px;*/ height:130px; margin:0 auto;}
 .logo_box { width:208px; height:95px; float:left; margin:15px;}
 
@@ -62,7 +62,7 @@ body {padding:0px;
    
 .contentshell {width:100% ;}
 .contentarea {width:980px;/*height:600px*/; margin:auto;} 
-.dropshell {width:980px; height:50px; float:left;}
+.dropshell {width:100%; height:50px; float:left;}
 .listmenu_1 {width:150px; margin-left:410px;}
 
 .dropshell_2 {/*width:980px;*/ float:left;border:1px #dadada solid;  }
@@ -261,4 +261,6 @@ font-size: 14px;
 .fottertext a { text-decoration:none; font-weight:bold; color:#4a4a4a;}
 
 /* fotter end */
+.mytable{width:500px;padding-right:25%;}
+.table_container{width:100%;}
 

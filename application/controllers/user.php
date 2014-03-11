@@ -46,7 +46,11 @@
 			redirect('login');
 		}
 		
-		
+		public function get_done_task()
+		{
+			$tasks=$this->user_model->get_done_task();
+			print_r($tasks);
+		}
 		
 		
 		
