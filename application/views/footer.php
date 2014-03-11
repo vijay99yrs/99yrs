@@ -1,11 +1,3 @@
-
-			<div class="contentshell">
-			<div class="contentarea">
-			
-			
-			</div>
-			</div>
-
 			<div class="fottershell">
 				<div class="fotterarea">
 					<div class="fottertext">
@@ -14,12 +6,3 @@
 					</div>
 				</div>
 			</div>
-
-
-</div><!--wrapper closed-->
-
-
-
-
-</body>
-</html>

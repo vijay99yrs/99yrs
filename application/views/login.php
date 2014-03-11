@@ -10,12 +10,12 @@
 	</head>
 	<body>
 		<div id="wapper">
-			<div id="wrapper_header">
+			<!--<div id="wrapper_header">-->
     		<div class="header">
         <div class="logo_box"> <?php echo img('images/logo.png','208','95');?>
         </div>
        </div>
-			</div> <!------HEADER END------------->
+			 <!------HEADER END------------->
 
 		<div class="blankshell">
 			<div class="area">

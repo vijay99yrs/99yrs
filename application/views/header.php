@@ -13,7 +13,7 @@ $( "#datepicker" ).datepicker();
 <link href="<?php echo base_url();?>css/style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<div id="wapper">
+
 	<div class="topshell">
 		
 			 <div class="header">
@@ -30,13 +30,9 @@ $( "#datepicker" ).datepicker();
 																
 																</div>
 															<div class="welcomebox"><a>Welcome :</a></div>
-
-
-
-</div>
+									</div>
 			 </div>
-	</div>
-	 
+	</div>	 
 	  <div class="navishell">
 					<div class="naviarea">
 					
@@ -59,12 +55,7 @@ $( "#datepicker" ).datepicker();
 					      				<li><a href="<?php echo site_url('admin/logout'); ?>">Logout</a></li>
 					       <?php }}else{ ?>
 					        <li><a href="#">Login</a></li>
-					       <?php } ?>
-					       
+					       <?php } ?>   
 					   </ul>
-					
-					
-					
 					</div>
-			</div>		
-<!------HEADER END------------->
+		</div>		
