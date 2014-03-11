@@ -14,7 +14,7 @@
 		public function index()
 		{
 			  $uset_data=$this->user_model->get_task_info();
-			  //print_r($data);exit;
+			  //print_r($data);exit;	
 			  $data['uset_data']=$uset_data;
 				$this->load->view('user_view',$data);
 		}

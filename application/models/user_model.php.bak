@@ -10,7 +10,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 		public function task_info()
 		{
 			//$gettask=$this->db->query('SELECT * FROM 99yrs_task WHERE user_to = 0');
-			$gettask=$this->db->query('SELECT * FROM task WHERE user_to = 0');
+			$gettask=$this->db->query('SELECT * FROM 99yrs_task WHERE user_to = 0');
      			return $gettask->result();
 		}
 		public function give_user_task($userid,$get_task_id)
@@ -101,7 +101,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 		public function get_task_info()
 		{
 			//add condition for current date to target date
-			$gettask=$this->db->query('SELECT * FROM 99yrs_task WHERE user_to ='.$this->session->userdata('id').' and task_status != "complete"');
+			$gettask=$this->db->query('SELECT * FROM 99yrs_task_assign WHERE use_id ='.$this->session->userdata('id').' and task_status != 3 ');
      			return $gettask->result();
 		}
 		
