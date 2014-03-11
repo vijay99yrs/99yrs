@@ -9,6 +9,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 		}
 		public function task_info()
 		{
+			//$gettask=$this->db->query('SELECT * FROM 99yrs_task WHERE user_to = 0');
 			$gettask=$this->db->query('SELECT * FROM 99yrs_task WHERE user_to = 0');
      			return $gettask->result();
 		}
