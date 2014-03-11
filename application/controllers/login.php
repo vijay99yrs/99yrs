@@ -4,34 +4,38 @@
 	{
 		public function index()
 		{
-			$this->load->view('login');
-			$this->load->model('check_model');
-			$this->load->library('session');
-			$username=$this->input->post('username');
-			$password=$this->input->post('password');
-			if(!empty($username) && !empty($password)):
-				$verify=$this->check_model->logincheck($username,$password);
-				if($verify){
-					$user = $this->session->userdata;
-					//print_r($user);exit;
-					 if($user['parent_id']==0)
-					 {
-						redirect('admin/checkme');
-					 }
-					 else
-					 {
-						redirect('user');
-					 }
+			$this->load->view('login');		
+		}
+		function userlogin(){
+	    		
+	   		$this->load->view('login',array('data'=>$_GET));
+				$this->load->model('check_model');
+				$this->load->library('session');
+				$username=$this->input->post('username');
+				$password=$this->input->post('password');
+				if(!empty($username) && !empty($password)):
+					$verify=$this->check_model->logincheck($username,$password);
+					if($verify){
+						$user = $this->session->userdata;
+						//print_r($user);exit;
+						 if($user['parent_id']==0)
+						 {
+							redirect('admin/checkme');
+						 }
+						 else
+						 {
+							redirect('user');
+						 }
 					
-				}
-				else
-				{
-					$this->load->helper('url');
-					redirect('login');
+					}
+					else
+					{
+						$this->load->helper('url');
+						redirect('login/userlogin/?error=1');
+						
+					}
 					
-				}
-				
-			endif;	
+				endif;
 		}
 		
 	}

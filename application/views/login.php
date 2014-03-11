@@ -24,11 +24,14 @@
 				
     		<div id="container">
     			
-        	<form method="post" action="" name="loginform">
+        	<form method="post" action="login/userlogin" name="loginform">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username">
             <label for="password">Password:</label>
             <input type="password" id="password" name="password">
+          <?php if($data['error']):?>
+          	<div class="error">Invalid username or password</div>
+          <?php endif;?>
             <div id="lower">
                 <input type="checkbox"><label class="check" id="keep_logged_in" for="checkbox">Keep me logged in</label>
                 <input type="submit" value="Login" name="submit" class="login_submit">
