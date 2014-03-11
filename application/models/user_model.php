@@ -113,7 +113,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 			/*$data=array(
 			     'task_id'=$id,
 			     'user_comment'=
-			);*/
+			);*/	
 	    $query = $this->db->query("select full_name, user_email from 99yrs_user where id=".$this->session->userdata('parent_id'));	
 	    $row=$query->row();
 	    //print_r($row);
@@ -123,7 +123,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 			$content="Task no : $id is updated by ".$this->session->userdata('full_name');
 			
 			
-			//$this->sendemail($username,$content,$email_parent);
+			$this->sendemail($username,$content,$email_parent);
 			$this->db->query($add_user_response);
 			return true;
 		}
@@ -186,6 +186,11 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 							  // Clear all addresses and attachments for next loop
 							  $mail->ClearAddresses();
 							  $mail->ClearAttachments();
+		}
+		
+		public function get_done_task()
+		{
+			
 		}
 		
 		

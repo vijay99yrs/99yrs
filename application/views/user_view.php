@@ -21,12 +21,33 @@
             }
         });
     });
+    
+    
+    //done task code
+    $('#done').on('click', function () {
+        //alert(task_id+'---'+comment+'---'+task_status);
+        $.ajax({
+            url: 'user/get_done_task',
+            data: {},
+            dataType : 'json',
+            success: function (data) {
+            	
+            }
+        });
+    });
+    
+    
 });
 </script>
 
      <div id="wrapper_header">
      	
      	<div class="task_details">
+     		<div>
+     			 <input type="button" id="done" name="done" value="Done Task">
+     			 <input type="button" id="pending" name="pending" value="Pending Task">
+     			 <input type="button" id="in_progress" name="in_progress" value="In Progress Task">
+     		</div>
      		<table>
      							<tr>
 						     	  <th>Task short description </th>

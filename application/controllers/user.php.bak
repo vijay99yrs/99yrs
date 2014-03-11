@@ -24,7 +24,7 @@
 			$closing_date= date('Y-m-d H:i:s');
 			//echo $closing_date;exit;
 			$result=$this->user_model->get_user_response($task_id,$closing_date,$comment,$task_status);
-			
+			return 'success';
 		}
 		
 		public function user_response()
@@ -46,7 +46,10 @@
 			redirect('login');
 		}
 		
-		
+		public function get_done_task()
+		{
+			$tasks=$this->user_model->get_done_task();
+		}
 		
 		
 		
