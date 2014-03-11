@@ -32,10 +32,10 @@
                     	$var = $data[4];
 											$date = str_replace('/', '-', $var);
 											$target_date= date('Y-m-d', strtotime($date));
-                    	
-                    	$insert_task_sql = "INSERT INTO 99yrs_task (task_short_desc,task_details,task_value,client_id,target_date,task_priority)
-        								VALUES (".$this->db->escape($data[0]).",".$this->db->escape($data[1]).",".$this->db->escape($data[2]).",".$this->db->escape($data[3]).",".$this->db->escape($data[4]).",".$this->db->escape($data[5]).")";
-												//echo "$insert_task_sql<br>";//exit;
+                    	$date_created=date('Y-m-d');
+                    	$insert_task_sql = "INSERT INTO 99yrs_task (task_short_desc,task_details,task_value,client_id,target_date,task_priority,date_created)
+        								VALUES (".$this->db->escape($data[0]).",".$this->db->escape($data[1]).",".$this->db->escape($data[2]).",".$this->db->escape($data[3]).",".$this->db->escape($target_date).",".$this->db->escape($data[5]).",".$this->db->escape($date_created).")";
+												//echo "$insert_task_sql<br>"; exit;
 												$this->db->query($insert_task_sql);
                     }
                     $i++;
