@@ -16,7 +16,7 @@
 			</div>
 
 
-</div><!--wrapper closed-->
+<!--wrapper closed-->
 
 
 

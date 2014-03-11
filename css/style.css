@@ -65,19 +65,19 @@ body {padding:0px;
 .dropshell {width:980px; height:50px; float:left;}
 .listmenu_1 {width:150px; margin-left:410px;}
 
-.dropshell_2 {width:980px; float:left;border:1px #dadada solid;  }
+.dropshell_2 {/*width:980px;*/ float:left;border:1px #dadada solid;  }
 
-.dropshell_bg1 {width:980px; float:left; background:#FFF;border:1px #dadada solid; }
+.dropshell_bg1 {/*width:980px;*/ float:left; background:#FFF;border:1px #dadada solid; }
 .dropshell_bg1:hover { background:#e9e9e9;}
 
-.dropshell_bg2 {width:980px; float:left;border:1px #dadada solid; background:#FFF; }
+.dropshell_bg2 {/*width:980px;*/ float:left;border:1px #dadada solid; background:#FFF; }
 .dropshell_bg2:hover { background:#e9e9e9;}
 
-.heading_table {width:184px; height:27px; float:left; text-align:center; font-weight:bold; color:#069; padding-top:15px; border-left:1px #dadada solid;}
-.rowlist_table {width:184px; height:21px; float:left; text-align:center; padding-top:5px; border-left:solid #dadada 1px;}
-.rowlist2_table {width:184px; height:21px; float:left; text-align:center; padding-top:5px; border-left:solid #dadada 1px;}
+.heading_table {width:148px; height:27px; float:left; text-align:center; font-weight:bold; color:#069; padding-top:15px; border-left:1px #dadada solid;}
+.rowlist_table {width:148px; height:50px; float:left; text-align:center; padding-top:5px; border-left:solid #dadada 1px;}
+.rowlist2_table {width:148px; height:50px; float:left; text-align:center; padding-top:5px; border-left:solid #dadada 1px;}
 
-.cleardiv1 {width:50px; height:27px; float:left;}
+.cleardiv1 {width:0px; height:27px; float:left;}
 
 
 
