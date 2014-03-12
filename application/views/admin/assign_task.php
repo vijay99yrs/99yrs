@@ -23,13 +23,15 @@
 <div class="cleardiv1"></div>
 <div class="heading_table">Select Task</div>
 <div class="heading_table">Task Name</div>
+<div class="heading_table">Client Name</div>
 <div class="heading_table">Target date</div>
 </div>
 		<?php	
+		//print_r($gettask);
 		foreach($gettask as $task )
 		{
 			echo "<div class='dropshell_bg1'>";
-			echo "<div class='rowlist_table'><input type='checkbox' name='add[]' id='box' value=".$task->task_id."></div><div class='rowlist_table'>".$task->name."</div><div class='rowlist_table'>".$task->target_date."</div>";
+			echo "<div class='rowlist_table'><input type='checkbox' name='add[]' id='box' value=".$task->task_id."></div><div class='rowlist_table'>".$task->name."</div><div class='rowlist_table'>".$task->client_name."</div><div class='rowlist_table'>".$task->target_date."</div>";
 			echo "</div>"; 	
 		}
 		?>

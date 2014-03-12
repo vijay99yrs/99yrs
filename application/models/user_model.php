@@ -10,7 +10,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 		public function task_info()
 		{
 			//$gettask=$this->db->query('SELECT * FROM 99yrs_task WHERE user_to = 0');
-			$gettask=$this->db->query('SELECT 99yrs_task_assign.task_id , 99yrs_task_assign.target_date, 99yrs_task.name FROM 99yrs_task_assign JOIN 99yrs_task on 99yrs_task_assign.task_id =99yrs_task.id WHERE 99yrs_task_assign.use_id = 0');
+			$gettask=$this->db->query('SELECT 99yrs_task_assign.task_id , 99yrs_task_assign.target_date, 99yrs_task.name,99yrs_client.client_name FROM 99yrs_task_assign LEFT JOIN 99yrs_task on 99yrs_task_assign.task_id =99yrs_task.id LEFT JOIN 99yrs_client on 99yrs_client.id=99yrs_task_assign.client_id WHERE 99yrs_task_assign.use_id = 0');
      			return $gettask->result();
 		}
 		public function give_user_task($userid,$get_task_id)
@@ -101,10 +101,10 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 		public function get_task_info()
 		{
 			//add condition for current date to target date
-			$gettask=$this->db->query('SELECT 99yrs_task_assign.task_id,99yrs_task_assign.client_id,99yrs_task_assign.target_date,99yrs_task_assign.task_value,99yrs_task.name FROM 99yrs_task_assign join  99yrs_task on 99yrs_task_assign.task_id=99yrs_task.id  WHERE use_id ='.$this->session->userdata('id').' and status not in (0,3) ');
+			$gettask=$this->db->query('SELECT 99yrs_task_assign.task_id,99yrs_task_assign.client_id,99yrs_task_assign.target_date,99yrs_task_assign.task_value,99yrs_task.name,99yrs_client.client_name FROM 99yrs_task_assign join  99yrs_task on  99yrs_task_assign.task_id=99yrs_task.id LEFT JOIN 99yrs_client ON 99yrs_client.id=99yrs_task_assign.client_id  WHERE 99yrs.task_assign.use_id ='.$this->session->userdata('id').' and status not in (0,3) ');
 			//echo 'SELECT * FROM 99yrs_task_assign WHERE use_id ='.$this->session->userdata('id').' and status not in (0,3) ';exit;
-     		//print_r($gettask->result());
-     		//exit;
+     		print_r($gettask->result());
+     		exit;
      		return $gettask->result();
 		}
 		
