@@ -147,7 +147,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 			99yrs_task_assign as tsa LEFT JOIN 99yrs_client as cl ON tsa.client_id = cl.id 
 			LEFT JOIN 99yrs_task as tsk on tsa.task_id=tsk.id
 			LEFT JOIN 99yrs_user as u on tsa.use_id=u.id
-			WHERE tsk.name IS NOT NULL ";
+			WHERE tsk.name IS NOT NULL AND tsa.use_id > 0 ";
 			if($clientId){
 				$selected_date_task .= " AND cl.id =$clientId ";
 			}

@@ -12,17 +12,20 @@
 		}
 		public function task_status()
 		{
-			
-			$this->load->view('admin/task_status_view');
+			$get_date=$this->input->post('get_date');
+			$date= date('Y-m-d');
+			$data['clients']=$this->user_model->getClients();
+	     	$this->load->view('admin/task_status_view',$data);	
+	
 		}
 		public function get_task_status()
 		{
-			$get_date=$this->input->post('get_date');
-			$date= date('Y-m-d', strtotime(str_replace('.', '/', $get_date)));
-			$this->user_model->show_task_upto($date);
-			$data['get_task']=$this->user_model->show_task_upto($date);
-     	$this->load->view('admin/task_status_view',$data);	
-			}
+			$clientId=$this->input->post('clientid');
+			$data['clients']=$this->user_model->getClients();
+			$data['get_task']=$this->user_model->show_task_upto($clientId);
+			$data['clientid']=$clientId;
+     		$this->load->view('admin/task_status_view',$data);	
+		}
 		public function logout()
 		{
 			$this->session->sess_destroy();

@@ -13,7 +13,10 @@
 		
 		public function index()
 		{
-			  $uset_data=$this->user_model->get_task_info();
+			  $clientId=$this->input->post('clientid');
+			  $data['clientid']=$clientId;
+			  $data['clients']=$this->user_model->getClients();
+			  $uset_data=$this->user_model->get_task_info($clientId);
 			  //print_r($data);exit;	
 			  $data['uset_data']=$uset_data;
 				$this->load->view('user_view',$data);

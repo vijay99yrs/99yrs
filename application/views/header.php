@@ -37,16 +37,12 @@ $( "#datepicker" ).datepicker();
 					<div class="naviarea">
 					
 					   <ul id="nav">
-					      <li><a href="#">About Us</a></li>
-					      <li><a href="#">Packages</a></li>
-					      <li><a href="#">FAQs</a></li>
-					      <li><a href="#">Contact</a></li>
 					      <?php
 					      if($this->session->userdata('parent_id')== 0)
 					      {
-					      	echo "<li><a href=" .site_url('admin/report'). ">Reports</a></li>";
-					      	echo "<li><a href=" .site_url('admin/task_status'). ">Task Status</a></li>";
+					      	echo "<li><a href=" .site_url('csvcontroller/upload_csv'). ">Upload task</a></li>";
 					      	echo "<li><a href=" .site_url('taskcontroller/task_assign'). ">Assign Task</a></li>";
+					      	echo "<li><a href=" .site_url('admin/task_status'). ">Task Status</a></li>";
 					      }
 					       ?>
 					       <?php if($this->session->userdata('id'))
