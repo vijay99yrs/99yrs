@@ -10,7 +10,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 		public function task_info()
 		{
 			//$gettask=$this->db->query('SELECT * FROM 99yrs_task WHERE user_to = 0');
-			$gettask=$this->db->query('SELECT 99yrs_task_assign.task_id , 99yrs_task_assign.target_date, 99yrs_task.name FROM 99yrs_task_assign JOIN 99yrs_task on9 9yrs_task_assign.task_id =99yrs_task.id WHERE 99yrs_task_assign.use_id = 0');
+			$gettask=$this->db->query('SELECT 99yrs_task_assign.task_id , 99yrs_task_assign.target_date, 99yrs_task.name FROM 99yrs_task_assign JOIN 99yrs_task on 99yrs_task_assign.task_id =99yrs_task.id WHERE 99yrs_task_assign.use_id = 0');
      			return $gettask->result();
 		}
 		public function give_user_task($userid,$get_task_id)
