@@ -10,7 +10,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 		public function task_info()
 		{
 			//$gettask=$this->db->query('SELECT * FROM 99yrs_task WHERE user_to = 0');
-			$gettask=$this->db->query('SELECT * FROM 99yrs_task WHERE user_to = 0');
+			$gettask=$this->db->query('SELECT * FROM 99yrs_task_assign WHERE use_id = 0');
      			return $gettask->result();
 		}
 		public function give_user_task($userid,$get_task_id)
@@ -18,21 +18,21 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 				$current_date=date('Y-m-d H:i:s');
 				$task_id=implode(',',$get_task_id);
 				
-				$update_task_table=" UPDATE 99yrs_task SET user_to=$userid, date_created='$current_date' WHERE id IN($task_id)";
+				$update_task_table=" UPDATE 99yrs_task_assign SET use_id=$userid, date_created='$current_date' WHERE id IN($task_id)";
 				$this->db->query($update_task_table);
-				$get_task_info_sql="SELECT 99yrs_user.id, 99yrs_user.user_email, 99yrs_user.full_name ,99yrs_task.task_short_desc,99yrs_task.task_details,99yrs_task.target_date FROM 99yrs_task LEFT JOIN 99yrs_user ON 99yrs_task.user_to = 99yrs_user.id WHERE 99yrs_task.id IN ($task_id )";
+				$get_task_info_sql="SELECT 99yrs_user.id, 99yrs_user.user_email, 99yrs_user.full_name ,99yrs_task_assign.task_id,99yrs_task_assign.task_value,99yrs_task_assign.target_date FROM 99yrs_task_assign LEFT JOIN 99yrs_user ON 99yrs_task_assign.use_id = 99yrs_user.id WHERE 99yrs_task_assign.task_id IN ($task_id )";
 				$get_task_info_detail=$this->db->query($get_task_info_sql);
 				//foreach($get_task_info_detail->result())
 				
-				$content="<table> <tr> <th>Task name </th> <th> Target date</th></tr>";
-				foreach ($get_task_info_detail->result() as $get_info)
+				$content="<table> <tr> <th>Task id </th> <th> Target date</th></tr>";
+								foreach ($get_task_info_detail->result() as $get_info)
 				{
 					//echo "Hiiii";
 					//print_r($get_info);
 					$user_name=$get_info->full_name;
 					$email=$get_info->user_email;
 					$content=$content."<tr>";
-					$content=$content."<td>".$get_info->task_short_desc. "</td>";
+					$content=$content."<td>".$get_info->task_id. "</td>";
 					$content=$content."<td>".$get_info->target_date. "</td>";					
 					$content=$content."</tr>";
 				}
@@ -75,9 +75,9 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 							  //$mail->MsgHTML($content);
 							  //echo $body;exit;
 							  
-							  $mail->MsgHTML($body);
-							  $mail->AddAddress('vijay@99yrs.com', 'vijay w');
-							  //$mail->AddAddress($email, $user_name);
+							  //$mail->MsgHTML($body);
+							  //$mail->AddAddress('pratik.chheda@99yrs.com', 'vijay w');
+							  $mail->AddAddress($email, $user_name);
 							  
 							
 							
@@ -91,7 +91,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 							  $mail->ClearAttachments();
 				//code for sending email ends here
 				
-				exit;
+				//exit;
 			
 				
 				
@@ -123,11 +123,14 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 	    //print_r($row);
 	    //echo $row->full_name;exit;
 			$username=$row->full_name;
-			$email_parent=$row->user_email;
-			$content="Task no : $id is updated by ".$this->session->userdata('full_name');*/
+			$email_parent=$row->user_email;*/
+			$query = $this->db->query("select name from 99yrs_task where id= $task_id");
+			$task_data=$query->row();
+			$task_name= $task_data->name;
+
+			$content="<table> <tr><th>Task No</th><th>Task Name</th></tr><tr><td> ".$task_id." </td><td>".$task_name."</td></tr></table> <br> Updated by <b>".$this->session->userdata('full_name').".</b>";
 			
-			
-			//$this->sendemail($username,$content,$email_parent);
+			$this->sendemail($username,$content,$email_parent);
 			$this->db->query($add_user_response);
 			return true;
 		}
@@ -181,7 +184,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 							$mail->SetFrom('vijay@99yrs.com', 'Vijay W');
 							$mail->AddReplyTo('vijay@99yrs.com', 'Vijay ]');
 							
-							$mail->Subject       = "You have a new task";
+							$mail->Subject       = "Task update mail";
 							
 							  $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
 							  //$mail->MsgHTML("Test email from localhost");
@@ -189,11 +192,8 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 							  //echo $body;exit;
 							  
 							  $mail->MsgHTML($body);
-							  $mail->AddAddress('sumeet.pattanayak@99yrs.com', 'vijay w');
-							  //$mail->AddAddress($email, $username);
-							  
-							
-							
+							  $mail->AddAddress('vijay@99yrs.com', 'vijay w');
+							  //$mail->AddAddress($email, $username);			
 							  if(!$mail->Send()) {
 							    echo "Mailer Error (" . str_replace("@", "&#64;", $row["email"]) . ') ' . $mail->ErrorInfo . '<br />';
 							  } else {
