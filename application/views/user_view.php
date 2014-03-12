@@ -24,11 +24,30 @@
 
      <div id="wrapper_header">
      	
-     	<div class="task_details" style="border:1px solid red;margin:0px auto;">
-     		
+     	<div class="task_details" style="margin:0px auto;">
+     		<form action="index" method="post">
+				<div class="dropshell">
+		
+			<select name="clientid" id="clientid" class="listmenu_1">
+				<?php 
+				echo "<option value='0' selected='selected'>All</option>";	
+				foreach($clients as $client)
+				{	
+					
+					if($clientid == $client->id ){
+						echo "<option value=". $client->id ." selected='selected'>". $client->company_name ."</option>";	
+					}else{
+						echo "<option value=". $client->id .">". $client->company_name ."</option>";	
+					}	
+				}
+				?>
+			</select>
+			<input type="submit" value="Check Task" class="button_ex" name="submit">
+		
+</div>
      							<div class="dropshell_2">
-     								
-     								<div class="heading_table">Task id </div>
+     								<div class="heading_table">Id </div>
+     								<div class="heading_table">Client Name </div>
      								<div class="heading_table">Task Name </div>
 						     	  <div class="heading_table">Task value </div>
 						     	  <div class="heading_table">Task Target date </div>
@@ -52,8 +71,8 @@
 									      ?>
 												       	<div class="dropshell_bg1">
 												       		<!--user/user_response-->
-													       <!--<input type="hidden" name="id" id="task_id" value="<?php echo $value->id; ?>">-->
-													    <div class="rowlist_table"> <?php echo $value->task_id; ?></div>
+													     <div class="rowlist2_table"> <?php echo $value->id; ?></div>
+													    <div class="rowlist_table"> <?php echo $value->client_name; ?></div>
 													    <div class="rowlist_table"> <?php echo $value->name; ?></div>
 													     <div class="rowlist_table"> <?php echo $value->task_value; ?></div>
 													     <div class="rowlist_table"> <?php echo $value->target_date; ?></div>
@@ -69,7 +88,7 @@
 													     		<option value="inprogress">In Progress</option>
 													     	</select>
 													     </div>-->
-													     <div class="rowlist_table"> <input type="button" onClick="abc(<?php echo $value->task_id; ?>);" id="save" name="save" value="Save"></div>
+													     <div class="rowlist_table"> <input type="button" onClick="abc(<?php echo $value->id; ?>);" id="save" name="save" value="Save"></div>
 													   </div>
 												       <?php }
 												       
@@ -80,7 +99,7 @@
 												       		<!--user/user_response-->
 													    <!--<div class="rowlist2_table"><input type="hidden" name="id" id="task_id" value="<?php echo $value->id; ?>">
 													    	 <?php echo $value->task_short_desc; ?></div>-->
-													     <div class="rowlist2_table"> <?php echo $value->task_id; ?></div>
+													     <div class="rowlist2_table"> <?php echo $value->id; ?></div>
 													    <div class="rowlist2_table"> <?php echo $value->name; ?></div>
 													     <div class="rowlist2_table"> <?php echo $value->task_value; ?></div>
 													     <div class="rowlist2_table"> <?php echo $value->target_date; ?></div>
