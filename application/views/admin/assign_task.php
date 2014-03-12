@@ -7,6 +7,7 @@
 		
 			<select name="getuserid" id="getuserid" class="listmenu_1">
 				<?php 
+
 				foreach($getuser as $user)
 				{	
 					echo "<option value=". $user->id .">". $user->full_name ."</option>";	
@@ -21,14 +22,14 @@
 <div class="dropshell_2">
 <div class="cleardiv1"></div>
 <div class="heading_table">Select Task</div>
-<div class="heading_table">Task Name</div>
-<div class="heading_table">CLient Id</div>
+<div class="heading_table">Task id</div>
+<div class="heading_table">Target date</div>
 </div>
 		<?php	
 		foreach($gettask as $task )
 		{
 			echo "<div class='dropshell_bg1'>";
-			echo "<div class='rowlist_table'><input type='checkbox' name='add[]' id='box' value=".$task->id."></div><div class='rowlist_table'>".$task->task_short_desc."</div><div class='rowlist_table'>".$task->client_id."</div>";
+			echo "<div class='rowlist_table'><input type='checkbox' name='add[]' id='box' value=".$task->id."></div><div class='rowlist_table'>".$task->id."</div><div class='rowlist_table'>".$task->target_date."</div>";
 			echo "</div>"; 	
 		}
 		?>
