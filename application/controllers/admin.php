@@ -33,6 +33,12 @@
 			$data['get_report']=$this->user_model->show_report();
 			$this->load->view('admin/report_view',$data);
 			}
+			
+		public function update_task_status($task_id,$status_val)
+		{
+			$result=$this->user_model->get_admin_user_response($task_id,$status_val);
+			return 'success';
+		}
 		
 }
 	

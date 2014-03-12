@@ -89,13 +89,13 @@
 			                    	$result1=$this->db->query($sql1);
 			                    	$user_id=$result1->row();
 			                    	//echo $user_id->id;
-			                    	$user_id =0; 
-			                    	if($user_id->id){
+			                    	
+			                    	/*if($user_id->id){
 			                    		$user_id =$this->db->escape($user_id->id); 
-			                    	}
+			                    	}*/
 			                    	//print_r($data);exit;
 			                    	$insert_task_sql = "INSERT INTO 99yrs_task_assign(`client_id`,`use_id`,`task_id`,`task_value`,`admin_comment`,`target_date`,`date_created`,`status`)
-			        								VALUES (".$this->db->escape($data[7]).",".$user_id.",".$this->db->escape($name->id).",".$this->db->escape($data[1]).",".$this->db->escape($data[3]).",'".$target_date."','".date('Y-m-d H:i:s')."','1')";
+			        								VALUES (".$this->db->escape($data[7]).",".$this->db->escape($user_id->id).",".$this->db->escape($name->id).",".$this->db->escape($data[1]).",".$this->db->escape($data[3]).",'".$target_date."','".date('Y-m-d H:i:s')."','1')";
 			        								
 			                    	$this->db->query($insert_task_sql);
 			                    }
