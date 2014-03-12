@@ -10,7 +10,7 @@
         status_val=$('#task_status_'+task_id).val();
         //alert(task_id+'---'+status_val);
         $.ajax({
-            url: 'update_task_status'+'/'+task_id+'/'+status_val,
+            url: 'admin/update_task_status'+'/'+task_id+'/'+status_val,
             data: {},
             //dataType : 'json',
             dataType : 'html',

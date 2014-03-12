@@ -19,11 +19,9 @@
 				$this->load->view('user_view',$data);
 		}
 		
-		public function update_task_status($task_id,$comment,$task_status)
+		public function update_task_status($task_id,$comment)
 		{
-			$closing_date= date('Y-m-d H:i:s');
-			//echo $closing_date;exit;
-			$result=$this->user_model->get_user_response($task_id,$closing_date,$comment,$task_status);
+			$result=$this->user_model->get_user_response($task_id,$comment);
 			return 'success';
 		}
 		
