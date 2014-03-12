@@ -98,14 +98,15 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 				return true;
 		}
 		
-		public function get_task_info()
+		public function get_task_info($clientid)
 		{
 			//add condition for current date to target date
-			$gettask=$this->db->query('SELECT 99yrs_task_assign.task_id,99yrs_task_assign.client_id,99yrs_task_assign.target_date,99yrs_task_assign.task_value,99yrs_task.name,99yrs_client.client_name FROM 99yrs_task_assign join  99yrs_task on  99yrs_task_assign.task_id=99yrs_task.id LEFT JOIN 99yrs_client ON 99yrs_client.id=99yrs_task_assign.client_id  WHERE 99yrs.task_assign.use_id ='.$this->session->userdata('id').' and status not in (0,3) ');
-			//echo 'SELECT * FROM 99yrs_task_assign WHERE use_id ='.$this->session->userdata('id').' and status not in (0,3) ';exit;
-     		print_r($gettask->result());
-     		exit;
-     		return $gettask->result();
+			$getUserTask = 'SELECT 99yrs_task_assign.id,99yrs_task_assign.task_id,99yrs_task_assign.client_id,99yrs_task_assign.target_date,99yrs_task_assign.task_value,99yrs_task.name,99yrs_client.client_name FROM 99yrs_task_assign join  99yrs_task on  99yrs_task_assign.task_id=99yrs_task.id LEFT JOIN 99yrs_client ON 99yrs_client.id=99yrs_task_assign.client_id  WHERE 99yrs_task_assign.use_id ='.$this->session->userdata('id').' and status not in (0,3) ';
+			if($clientid){
+				$getUserTask .= " AND 99yrs_task_assign.client_id = $clientid ";
+			}
+			$gettask=$this->db->query($getUserTask); 
+     	return $gettask->result();
 		}
 		
 		public function get_user_response($task_id,$comment)
@@ -113,19 +114,9 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 			$date=date("Y-m-d H:i:s");
 			$comment=urldecode($comment);
 			
-			$sql="select id from 99yrs_task_assign where task_id=".$task_id;
-			$result=$this->db->query($sql);
-    	$assign_id=$result->row();
-    	//echo $assign_id->id.'<==========';exit;
-			                    	
-			$add_user_response="insert into 99yrs_user_comment (`task_assign_id` , `user_id` , `user_comment` , `date_created`) values (".$assign_id->id.",".$this->session->userdata('id').",'".$comment."', '".$date."')";
-			//echo $add_user_response;exit;
-	    /*$query = $this->db->query("select full_name, user_email from 99yrs_user where id=".$this->session->userdata('parent_id'));	
-	    $row=$query->row();
-	    //print_r($row);
-	    //echo $row->full_name;exit;
-			$username=$row->full_name;
-			$email_parent=$row->user_email;*/
+			$add_user_response="insert into 99yrs_user_comment (`task_assign_id` , `user_id` , `user_comment` , `date_created`) values (".$task_id.",".$this->session->userdata('id').",'".$comment."', '".$date."')";
+			echo 
+			$this->db->query($add_user_response);
 			$query = $this->db->query("select name from 99yrs_task where id= $task_id");
 			$task_data=$query->row();
 			$task_name= $task_data->name;
@@ -148,12 +139,28 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 			return true;
 		}
 		
-		public function show_task_upto($date)
+		public function show_task_upto($clientId)
+		{
+			$selected_date_task = "SELECT tsa.id,tsa.status,cl.company_name,tsk.name,tsa.task_value,u.full_name,tsa.target_date,
+			(SELECT 99yrs_user_comment.user_comment FROM 99yrs_user_comment WHERE 99yrs_user_comment.task_assign_id = tsa.id order by 99yrs_user_comment.id DESC LIMIT 1) as comment
+			FROM 
+			99yrs_task_assign as tsa LEFT JOIN 99yrs_client as cl ON tsa.client_id = cl.id 
+			LEFT JOIN 99yrs_task as tsk on tsa.task_id=tsk.id
+			LEFT JOIN 99yrs_user as u on tsa.use_id=u.id
+			WHERE tsk.name IS NOT NULL ";
+			if($clientId){
+				$selected_date_task .= " AND cl.id =$clientId ";
+			}
+			$selected_date_task .= "GROUP BY tsa.id";
+			$show_task=$this->db->query($selected_date_task);
+			return $show_task->result();
+		}
+		public function getClients($date)
 		{
 			//echo $date;
-			$selected_date_task = "SELECT 99yrs_task_assign.*, (SELECT 99yrs_user_comment.user_comment FROM 99yrs_user_comment WHERE 99yrs_user_comment.task_assign_id = 99yrs_task_assign.id order by 99yrs_user_comment.date_created DESC LIMIT 1) AS comment FROM 99yrs_task_assign, 99yrs_user_comment GROUP BY 99yrs_task_assign.id ";
+			$selected_client = "SELECT id, company_name FROM 99yrs_client ";
 			//echo $selected_date_task;
-			$show_task=$this->db->query($selected_date_task);
+			$show_task=$this->db->query($selected_client);
 			return $show_task->result();
 		}
 		
