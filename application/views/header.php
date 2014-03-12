@@ -45,6 +45,8 @@ $( "#datepicker" ).datepicker();
 					      if($this->session->userdata('parent_id')== 0)
 					      {
 					      	echo "<li><a href=" .site_url('admin/report'). ">Reports</a></li>";
+					      	echo "<li><a href=" .site_url('admin/task_status'). ">Task Status</a></li>";
+					      	echo "<li><a href=" .site_url('taskcontroller/task_assign'). ">Assign Task</a></li>";
 					      }
 					       ?>
 					       <?php if($this->session->userdata('id'))
